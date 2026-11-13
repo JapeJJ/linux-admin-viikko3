@@ -41,11 +41,13 @@ df / | awk 'NR==2 {print $5}' | tr -d '%'
     <li>80 % -> WARNING</li>
     <li>90 % -> WARNING</li>
   </ul>
+<img src="disk-test.png" alt="Disk status tests with values 50, 80 and 90" style="max-width: 100%;">
   <p>After testing I ran <code>./status.sh</code> without an argument to restore the real value (4 %).</p>
-  <p><strong>Automatic updates:</strong> 13:55:01 UTC and 13:56:01 UTC.</p>
+  <p><strong>Automatic updates:</strong> 15:34:01 and 15:35:01.</p>
   <p><strong>Reboot test:</strong> After <code>sudo reboot</code> the page opened again,
-     the report was generated at 14:13:01 UTC with uptime "up 1 minute",
+     the report was generated at 15:22:01 UTC with uptime "up 6 minutes",
      and the updates continued every minute.</p>
+<img src="reboot-test.png" alt="Status report after reboot" style="max-width: 100%;">
 
   <h2>Something I learned</h2>
   <p>cron doesnt know what folder you are in so it needs the entire path to the script and that cron tries to email the scripts output every time it runs the script so every minute. Had to use > /dev/null 2>&1 to get rid of them</p>
