@@ -54,6 +54,7 @@ cat > "${OUTPUT_FILE}.tmp" <<EOF
     <tr><td>Available RAM</td><td>${ram_available}B</td></tr>
   </table>
  <p><a href="docs.html">Documentation</a> | <a href="https://github.com/JapeJJ/linux-admin-viikko3">Source code on GitHub</a></p>
+<img src="linux.jpg" alt="Sad Linux penguin" style="max-width: 100%;">
 </body>
 </html>
 EOF
