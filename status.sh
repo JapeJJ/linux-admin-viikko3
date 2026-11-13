@@ -37,6 +37,7 @@ cat > "${OUTPUT_FILE}.tmp" <<EOF
     h1, h2 { color: #ff3333; }
     a { color: #ff6666; }
     table { border-collapse: collapse; width: 100%; }
+ <p><a href="docs.html">Documentation</a> | <a href="https://github.com/JapeJJ/linux-admin-viikko3">Source code on GitHub</a></p>
     td { padding: 8px; border-bottom: 1px solid #333333; }
     .OK { color: #33ff66; font-weight: bold; }
     .WARNING { color: #ffcc00; font-weight: bold; }

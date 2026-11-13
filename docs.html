@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Server Status - Doc</title>
+  <style>
+    body { max-width: 800px; margin: 40px auto; padding: 0 20px;
+           font-family: sans-serif; line-height: 1.6;
+           background: #000000; color: #ffffff; }
+    h1, h2 { color: #ff3333; }
+    a { color: #ff6666; }
+    pre { background: #1a1a1a; padding: 16px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Week 3 - Doc</h1>
+  <p><a href="./">Back to status report</a> |
+     <a href="https://github.com/JapeJJ/linux-admin-viikko3">Code on GitHub</a></p>
+
+  <h2>Commands used</h2>
+  <pre>date "+%Y-%m-%d %H:%M:%S %Z"
+  -> Shows the current date and time as year-month-day-hours-minutes-seconds-timezone
+
+uptime -p
+  -> the -p stands for pretty so it just writes it in a more readable form and uptime shows how long the server has been active
+
+df / | awk 'NR==2 {print $5}' | tr -d '%'
+  -> df shows disk info and awk picks the usage % from it and tr removes the % sign so the if statement can compare it to 80. Pipes pass output from one command to the next one.</pre>
+
+  <h2>How it works</h2>
+  <p><strong>Script:</strong> Script collects time,uptime,disc usage and ram, saves the variables and writes them to the html folder</p>
+  <p><strong>Disk space status:</strong> Script is run on bash and uses a function with a if statement and pipes to compare the data to 80, that determines what to show on the html. Below 80 OK 80 or more WARNING</p>
+  <p><strong>Schedule:</strong> Uses cron and runs the script every minute, cron is enabled so it runs auto after reboot</p>
+
+  <h2>Test results</h2>
+  <p><strong>Syntax check:</strong> <code>bash -n status.sh</code> gave no errors.</p>
+  <p><strong>Disk space status tests</strong> (test value given as an argument, e.g. <code>./status.sh 90</code>):</p>
+  <ul>
+    <li>50 % -> OK</li>
+    <li>80 % -> WARNING</li>
+    <li>90 % -> WARNING</li>
+  </ul>
+  <p>After testing I ran <code>./status.sh</code> without an argument to restore the real value (4 %).</p>
+  <p><strong>Automatic updates:</strong> 13:55:01 UTC and 13:56:01 UTC.</p>
+  <p><strong>Reboot test:</strong> After <code>sudo reboot</code> the page opened again,
+     the report was generated at 14:13:01 UTC with uptime "up 1 minute",
+     and the updates continued every minute.</p>
+
+  <h2>Something I learned</h2>
+  <p>cron doesnt know what folder you are in so it needs the entire path to the script and that cron tries to email the scripts output every time it runs the script so every minute. Had to use > /dev/null 2>&1 to get rid of them</p>
+</body>
+</html>
